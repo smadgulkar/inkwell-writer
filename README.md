@@ -31,11 +31,23 @@ becomes your sync. There is no account and no server.
 - **Short story mode** with a submission tracker that warns you about simultaneous-submission rules and word limits
 - **Warm, readable themes:** Study (default), Daylight, Dusk and Night, and six writing typefaces
 
-## Get it
+## Download
 
-Installers will appear on the [Releases](https://github.com/smadgulkar/inkwell-writer/releases) page.
-Until then, run it from source (below). It also runs in a browser (Chrome or Edge can save
-straight to a folder on your computer).
+Get the latest version from the [Releases](https://github.com/smadgulkar/inkwell-writer/releases/latest) page:
+
+| System | File to download |
+| --- | --- |
+| Windows 10 or 11 | `Inkwell_…_x64-setup.exe` (or the `.msi`) |
+| macOS (Apple silicon and Intel) | `Inkwell_…_universal.dmg` |
+| Linux | `.AppImage` (any distro), `.deb` (Debian, Ubuntu) or `.rpm` (Fedora) |
+
+The builds are not code-signed yet, so the first launch shows a warning:
+
+- **Windows:** "Windows protected your PC" → **More info** → **Run anyway**.
+- **macOS:** right-click (or Control-click) the app → **Open** → **Open**. If macOS says the app is damaged, run `xattr -cr /Applications/Inkwell.app` in Terminal, then open it again.
+- **Linux AppImage:** make it executable (`chmod +x Inkwell_*.AppImage`), then run it.
+
+It also runs in a browser: build it from source (below). Chrome and Edge can save straight to a folder on your computer.
 
 ## Features in detail
 
@@ -115,7 +127,7 @@ Submission tracker (short story mode, Ctrl/Cmd+7):
 - **Changes from other devices** are picked up when the window regains focus and every 20 seconds. If you were editing the same document at that moment, your typing is kept and the other version is offered as a conflict.
 - Error boundaries: a failure in one view shows a message and saves your work instead of blanking the window
 - Performance gates: `tests/perf.test.ts` opens, counts and exports a 157,000-word novel (about 180 ms to open, about 100 ms for the .docx on a laptop-class CPU); `npm run check:size` fails the build if the first load exceeds 250 KB gzipped (currently about 188 KB)
-- Installers: `.github/workflows/release.yml` builds Windows (.msi, .exe), macOS (universal .dmg) and Linux (.deb, .rpm, .AppImage) packages on GitHub when you push a tag such as `v0.7.0`, and attaches them to a draft release. `ci.yml` runs the tests and size check on every push.
+- Installers: `.github/workflows/release.yml` builds Windows (.msi, .exe), macOS (universal .dmg) and Linux (.deb, .rpm, .AppImage) packages on GitHub when you push a tag such as `v0.8.0`, and attaches them to a draft release. `ci.yml` runs the tests and size check on every push.
 
 ### Ideas
 
@@ -158,7 +170,7 @@ so it works in any folder you choose, including paths with spaces and synced fol
 ### Releasing
 
 ```bash
-git tag v0.7.0 && git push --tags   # GitHub builds installers for all three systems
+git tag v0.8.0 && git push --tags   # GitHub builds installers for all three systems
 ```
 
 Unsigned builds work, but Windows SmartScreen and macOS Gatekeeper will warn on first launch.

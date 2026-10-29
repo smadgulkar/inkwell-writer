@@ -1,7 +1,7 @@
 {
   "name": "inkwell",
   "private": true,
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "A writing studio for short stories and novels that keeps your work as plain Markdown files.",
   "type": "module",
   "scripts": {

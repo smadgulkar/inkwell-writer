@@ -1,6 +1,6 @@
 [package]
 name = "inkwell"
-version = "0.7.0"
+version = "0.8.0"
 description = "A writing studio for short stories and novels"
 edition = "2021"
 license = "GPL-3.0-or-later"

@@ -1,8 +1,8 @@
 name: Release
 
-# Push a tag like v0.7.0 (or run this by hand) to build installers for
-# Windows (.msi, .exe), macOS (.dmg, universal) and Linux (.deb, .rpm, .AppImage).
-# They are attached to a draft GitHub release for you to review and publish.
+# Push a tag like v0.8.0 (or run this by hand from the Actions tab) to build installers for
+# Windows (.exe, .msi), macOS (universal .dmg) and Linux (.AppImage, .deb, .rpm).
+# They are attached to a draft GitHub release; check it, then press "Publish release".
 
 on:
   push:
@@ -53,9 +53,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_type == 'tag' && github.ref_name || format('v{0}', github.run_number) }}
-          releaseName: 'Inkwell ${{ github.ref_type == ''tag'' && github.ref_name || github.run_number }}'
-          releaseBody: 'Download the installer for your system below.'
+          tagName: ${{ github.ref_type == 'tag' && github.ref_name || format('v__VERSION__-build{0}', github.run_number) }}
+          releaseName: 'Inkwell v__VERSION__'
+          releaseBody: |
+            A free, open-source writing studio for novels and short stories.
+
+            **Which file do I need?**
+            - **Windows 10/11:** `Inkwell_*_x64-setup.exe` (or the `.msi`)
+            - **macOS:** `Inkwell_*_universal.dmg` (Apple silicon and Intel)
+            - **Linux:** `.AppImage` (any distro), `.deb` (Debian/Ubuntu) or `.rpm` (Fedora)
+
+            These builds are not code-signed yet. On Windows choose **More info → Run anyway**; on macOS right-click the app and choose **Open** (if it says the app is damaged, run `xattr -cr /Applications/Inkwell.app`). See the README for details.
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
